@@ -8,7 +8,7 @@ def validar_lista_vacia(lista_productos):
 
 def pedir_cadena(mensaje, es_numero=False):
     while True:
-        dato = input(mensaje)
+        dato = input(mensaje).lower().strip()
         if not dato:
             print("Error, este campo no puede estar vacio")
             continue
@@ -16,14 +16,14 @@ def pedir_cadena(mensaje, es_numero=False):
         if es_numero:
             if dato.isdigit():
                 return int(dato)
-            print("Error, debe ingresar un numero entero positivo")
+            print("\nError, debe ingresar un numero entero positivo\n")
         else:
             return dato
 
 def pedir_datos_producto():
     print()
-    nombre = pedir_cadena("Ingrese nombre del producto: ").lower().strip()
-    categoria = pedir_cadena("Ingrese categoria del producto: ").lower().strip()
+    nombre = pedir_cadena("Ingrese nombre del producto: ")
+    categoria = pedir_cadena("Ingrese categoria del producto: ")
     precio = pedir_cadena("Ingrese precio del producto (sin centavos): ", es_numero=True)
 
     return [nombre,categoria,precio]
@@ -93,9 +93,7 @@ def menu_principal():
 
     while True:
 
-        print("\n--- Menu Principal ---")
-
-        opcion_menu= pedir_cadena("1. Agregar Producto\n2. Mostrar Productos\n3. Buscar producto\n4. Eliminar producto\n5. Salir\n-------------------\nIngrese opcion: ", es_numero=True)
+        opcion_menu= pedir_cadena("\n--- Menu Principal ---\n1. Agregar Producto\n2. Mostrar Productos\n3. Buscar producto\n4. Eliminar producto\n5. Salir\n-------------------\nIngrese opcion: ", es_numero=True)
 
         match(opcion_menu):
             case 1:
