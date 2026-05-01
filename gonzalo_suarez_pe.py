@@ -85,7 +85,7 @@ def eliminar_producto(lista_productos,secciones):
         producto_eliminado = lista_productos.pop(indice)
         print(f"Producto: {producto_eliminado[0]} eliminado exitosamente")
     else:
-        print("Error, posicion fuera de rango")
+        print("Error, producto no encontrado")
 
 def menu_principal():
 
