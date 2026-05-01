@@ -6,7 +6,7 @@ def validar_lista_vacia(lista_productos):
         return False
     return True
 
-def pedir_dato(mensaje, es_numero=False):
+def pedir_cadena(mensaje, es_numero=False):
     while True:
         dato = input(mensaje).strip()
         if not dato:
@@ -22,9 +22,9 @@ def pedir_dato(mensaje, es_numero=False):
 
 def pedir_datos_producto():
     print()
-    nombre = pedir_dato("Ingrese nombre del producto: ")
-    categoria = pedir_dato("Ingrese categoria del producto: ")
-    precio = pedir_dato("Ingrese precio del producto (sin centavos): ", es_numero=True)
+    nombre = pedir_cadena("Ingrese nombre del producto: ")
+    categoria = pedir_cadena("Ingrese categoria del producto: ")
+    precio = pedir_cadena("Ingrese precio del producto (sin centavos): ", es_numero=True)
 
     return [nombre,categoria,precio]
 
@@ -59,7 +59,7 @@ def buscar_producto(lista_productos,secciones):
     
     if not validar_lista_vacia(lista_productos): return
 
-    nombre_producto = input("Ingrese nombre del producto: ")
+    nombre_producto = pedir_cadena("Ingrese nombre del producto: ")
     encontrado = False
 
     for i in range(len(lista_productos)):
@@ -78,7 +78,7 @@ def eliminar_producto(lista_productos,secciones):
 
     mostrar_productos(lista_productos,secciones)
 
-    posicion = int(input("\nIngrese el numero del producto a eliminar: ")) 
+    posicion = pedir_cadena("\nIngrese el numero del producto a eliminar: ",True)
     indice = posicion - 1
 
     if indice >= 0 and indice < len(lista_productos):
@@ -96,7 +96,7 @@ def menu_principal():
 
         print("\n--- Menu Principal ---")
 
-        opcion_menu= pedir_dato("1. Agregar Producto\n2. Mostrar Productos\n3. Buscar producto\n4. Eliminar producto\n5. Salir\n-------------------\nIngrese opcion: ", es_numero=True)
+        opcion_menu= pedir_cadena("1. Agregar Producto\n2. Mostrar Productos\n3. Buscar producto\n4. Eliminar producto\n5. Salir\n-------------------\nIngrese opcion: ", es_numero=True)
 
         match(opcion_menu):
             case 1:
