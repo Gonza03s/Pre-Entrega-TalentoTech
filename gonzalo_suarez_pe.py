@@ -8,7 +8,7 @@ def validar_lista_vacia(lista_productos):
 
 def pedir_cadena(mensaje, es_numero=False):
     while True:
-        dato = input(mensaje).strip()
+        dato = input(mensaje)
         if not dato:
             print("Error, este campo no puede estar vacio")
             continue
@@ -18,12 +18,12 @@ def pedir_cadena(mensaje, es_numero=False):
                 return int(dato)
             print("Error, debe ingresar un numero entero positivo")
         else:
-            return dato.lower()
+            return dato
 
 def pedir_datos_producto():
     print()
-    nombre = pedir_cadena("Ingrese nombre del producto: ")
-    categoria = pedir_cadena("Ingrese categoria del producto: ")
+    nombre = pedir_cadena("Ingrese nombre del producto: ").lower().strip()
+    categoria = pedir_cadena("Ingrese categoria del producto: ").lower().strip()
     precio = pedir_cadena("Ingrese precio del producto (sin centavos): ", es_numero=True)
 
     return [nombre,categoria,precio]
@@ -34,8 +34,8 @@ def agregar_producto(lista_productos):
     while True:
         nuevo_producto = pedir_datos_producto()
         lista_productos.append(nuevo_producto)
-
-        opcion_usuario = input(f"Producto: {nuevo_producto[0]} cargado. Quiere cargar otro? si/no\n").lower()
+        
+        opcion_usuario = pedir_cadena(f"Producto: {nuevo_producto[0]} cargado. Quiere cargar otro? si/no\n")
 
         if opcion_usuario != "si":
             print("\n| --- Carga Exitosa --- |\n")
@@ -53,14 +53,13 @@ def mostrar_productos(lista_productos,secciones):
             print(f"{secciones[j]}: {lista_productos[i][j]}")
 
 def buscar_producto(lista_productos,secciones):
-
-    
-    print("\n --- Productos encontrados --- ")
     
     if not validar_lista_vacia(lista_productos): return
 
-    nombre_producto = pedir_cadena("Ingrese nombre del producto: ")
+    nombre_producto = pedir_cadena("\nIngrese nombre del producto a buscar: ")
     encontrado = False
+
+    print("\n --- Productos encontrados --- ")
 
     for i in range(len(lista_productos)):
         for j in range(len(lista_productos[i])):
